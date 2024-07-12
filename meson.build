@@ -20,3 +20,7 @@ mgec_exe = executable(
 
 # We could now run tests if we had test executables
 #test('does it run', mgec_exe)
+
+# To set up the project, run meson setup <builddir> in the directory 
+# containing this file. To compile it afterwards, run 
+# meson compile -C <builddir>. 
