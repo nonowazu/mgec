@@ -7,5 +7,6 @@
 
 # Meson requires you to add all source files manually for the sake of speed.
 sources = files([
+  'cpu.c',
   'main.c',
 ])
