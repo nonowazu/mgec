@@ -2,17 +2,19 @@
 #include "unity.h"
 #include "unity_internals.h"
 
-void setUp(void){};
-void tearDown(void){};
+void setUp(void) {};
+void tearDown(void) {};
 
 void test_CPU_should_init() {
-  cpu *c = mgec_new_cpu();
-  TEST_ASSERT_EQUAL_INT16(c->pc, 0);
-  TEST_ASSERT_EQUAL_INT8(c->ac, 0);
-  TEST_ASSERT_EQUAL_INT8(c->x, 0);
-  TEST_ASSERT_EQUAL_INT8(c->y, 0);
-  TEST_ASSERT_EQUAL_INT8(c->sr, 0);
-  TEST_ASSERT_EQUAL_INT8(c->sp, 0);
+  cpu* c = mgec_new_cpu();
+  TEST_ASSERT_EQUAL_INT8(c->xh, 0);
+  TEST_ASSERT_EQUAL_INT8(c->yh, 0);
+  TEST_ASSERT_EQUAL_INT8(c->sr, 0x35);
+  TEST_ASSERT_EQUAL_INT8(c->sph, 1);
+  TEST_ASSERT_EQUAL_INT8(c->dp, 0);
+  TEST_ASSERT_EQUAL_INT8(c->pb, 0);
+  TEST_ASSERT_EQUAL_INT8(c->db, 0);
+  TEST_ASSERT_EQUAL_INT8(c->e, 1);
 }
 
 int main() {
