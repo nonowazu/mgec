@@ -10,7 +10,8 @@ cpu* mgec_new_cpu() {
 
   c->xh = 0;
   c->yh = 0;
-  c->sr = 0x35;
+  c->sr = MGEC_CPU_STATUS_IDX_SIZE | MGEC_CPU_STATUS_ACC_SIZE |
+          MGEC_CPU_STATUS_IRQ_DISABLE | MGEC_CPU_STATUS_CARRY;
   c->sph = 0x01;
   c->dp = 0;
   c->pb = 0;
