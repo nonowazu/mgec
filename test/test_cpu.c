@@ -1,20 +1,29 @@
 #include "cpu.h"
 #include "unity.h"
 #include "unity_internals.h"
+#include <stdlib.h>
 
 void setUp(void) {};
 void tearDown(void) {};
 
 void test_CPU_should_init() {
   cpu* c = mgec_new_cpu();
-  TEST_ASSERT_EQUAL_INT8(c->xh, 0);
-  TEST_ASSERT_EQUAL_INT8(c->yh, 0);
-  TEST_ASSERT_EQUAL_INT8(c->sr, 0x35);
-  TEST_ASSERT_EQUAL_INT8(c->sph, 1);
-  TEST_ASSERT_EQUAL_INT8(c->dp, 0);
-  TEST_ASSERT_EQUAL_INT8(c->pb, 0);
-  TEST_ASSERT_EQUAL_INT8(c->db, 0);
-  TEST_ASSERT_EQUAL_INT8(c->e, 1);
+  TEST_ASSERT_EQUAL_INT8(0, c->xh);
+  TEST_ASSERT_EQUAL_INT8(0, c->yh);
+  TEST_ASSERT_EQUAL_INT8(0, c->sr_n);
+  TEST_ASSERT_EQUAL_INT8(0, c->sr_v);
+  TEST_ASSERT_EQUAL_INT8(1, c->sr_m);
+  TEST_ASSERT_EQUAL_INT8(1, c->sr_x);
+  TEST_ASSERT_EQUAL_INT8(0, c->sr_d);
+  TEST_ASSERT_EQUAL_INT8(1, c->sr_i);
+  TEST_ASSERT_EQUAL_INT8(0, c->sr_z);
+  TEST_ASSERT_EQUAL_INT8(1, c->sr_c);
+  TEST_ASSERT_EQUAL_INT8(1, c->sph);
+  TEST_ASSERT_EQUAL_INT8(0, c->dp);
+  TEST_ASSERT_EQUAL_INT8(0, c->pb);
+  TEST_ASSERT_EQUAL_INT8(0, c->db);
+  TEST_ASSERT_EQUAL_INT8(1, c->e);
+  free(c);
 }
 
 int main() {
