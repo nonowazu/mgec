@@ -9,4 +9,5 @@ jobs:
       - uses: BSFishy/meson-build@v1.0.3
         with:
           meson-version: 1.4.1
+          options: '--print-errorlogs'
           action: test
