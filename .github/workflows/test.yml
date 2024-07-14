@@ -1,0 +1,13 @@
+name: Test
+on: [pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: BSFishy/meson-build@v1.0.3
+        with:
+          meson-version: 1.4.1
+          options: '--print-errorlogs'
+          action: test
