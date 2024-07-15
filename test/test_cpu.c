@@ -10,6 +10,7 @@ void test_CPU_should_init() {
   cpu* c = mgec_new_cpu();
   TEST_ASSERT_EQUAL_INT8(0, c->xh);
   TEST_ASSERT_EQUAL_INT8(0, c->yh);
+  TEST_ASSERT_EQUAL_INT8(0x35, c->sr);
   TEST_ASSERT_EQUAL_INT8(0, c->sr_n);
   TEST_ASSERT_EQUAL_INT8(0, c->sr_v);
   TEST_ASSERT_EQUAL_INT8(1, c->sr_m);

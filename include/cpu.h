@@ -1,6 +1,8 @@
 #ifndef MGEC_CPU_H
 #define MGEC_CPU_H
 
+#include "types.h"
+
 #define MGEC_CPU_STATUS_NEGATIVE 0b10000000
 #define MGEC_CPU_STATUS_OVERFLOW 0b01000000
 #define MGEC_CPU_STATUS_ACC_SIZE 0b00100000
@@ -9,8 +11,6 @@
 #define MGEC_CPU_STATUS_IRQ_DISABLE 0b00000100
 #define MGEC_CPU_STATUS_ZERO 0b00000010
 #define MGEC_CPU_STATUS_CARRY 0b00000001
-
-#include "types.h"
 
 // The 65C816 CPU
 typedef struct _cpu {
