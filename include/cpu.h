@@ -2,6 +2,7 @@
 #define MGEC_CPU_H
 
 #include "types.h"
+#include <sys/types.h>
 
 #define MGEC_CPU_STATUS_NEGATIVE 0b10000000
 #define MGEC_CPU_STATUS_OVERFLOW 0b01000000
@@ -11,6 +12,8 @@
 #define MGEC_CPU_STATUS_IRQ_DISABLE 0b00000100
 #define MGEC_CPU_STATUS_ZERO 0b00000010
 #define MGEC_CPU_STATUS_CARRY 0b00000001
+
+typedef enum _cpu_register { XL, XH, X, YL, YH, Y, A, B, C } cpu_register_t;
 
 // The 65C816 CPU
 typedef struct _cpu {
