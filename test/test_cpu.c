@@ -1,10 +1,11 @@
 #include "cpu.h"
+#include "types.h"
 #include "unity.h"
 #include "unity_internals.h"
 #include <stdlib.h>
 
-void setUp(void) {};
-void tearDown(void) {};
+void setUp(void){};
+void tearDown(void){};
 
 void test_CPU_should_init() {
   cpu* c = mgec_new_cpu();
@@ -27,10 +28,22 @@ void test_CPU_should_init() {
   free(c);
 }
 
+void test_CPU_load8() {
+  cpu* c = mgec_new_cpu();
+  u8 value = 242;
+  cycles cyc = load(c, XL, value);
+  TEST_ASSERT_EQUAL_INT8(242, c->xl);
+  TEST_ASSERT_EQUAL_size_t(1, cyc);
+  // Maybe?
+  TEST_ASSERT_EQUAL_INT8(0x00, c->xh);
+  TEST_ASSERT_EQUAL(0, c->sr_z);
+}
+
 int main() {
   UNITY_BEGIN();
 
   RUN_TEST(test_CPU_should_init);
+  RUN_TEST(test_CPU_load8);
 
   return UNITY_END();
 }

@@ -2,7 +2,6 @@
 #define MGEC_CPU_H
 
 #include "types.h"
-#include <sys/types.h>
 
 #define MGEC_CPU_STATUS_NEGATIVE 0b10000000
 #define MGEC_CPU_STATUS_OVERFLOW 0b01000000
@@ -103,5 +102,9 @@ typedef struct _cpu {
 } cpu;
 
 cpu* mgec_new_cpu();
+
+inline cycles load8(cpu*, cpu_register_t, u8);
+inline cycles load16(cpu*, cpu_register_t, u16);
+#define load(C, R, V) _Generic((V), u8: load8, u16: load16)(C, R, V)
 
 #endif

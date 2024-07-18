@@ -21,26 +21,20 @@ cpu* mgec_new_cpu() {
   return c;
 }
 
-#define load(C, R, V) _Generic((V), u8: load8, u16: load16)(C, R, V)
-
-static inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
+extern inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
+  // TODO: flag changes
   switch (reg) {
   case XL:
     c->xl = value;
     break;
-  case XH:
-    c->xh = value;
-    break;
   case YL:
     c->yl = value;
     break;
-  case YH:
-    c->yh = value;
-    break;
-  // Making sure we're handling all cases
   // TODO: some error condition
   case X:
+  case XH:
   case Y:
+  case YH:
   case A:
   case B:
   case C:
@@ -48,10 +42,15 @@ static inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
     break;
   }
 
+  if (value == 0) {
+    c->sr_z = 1;
+  }
+
   return 1;
 }
 
-static inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
+extern inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
+  // TODO: flag changes
   switch (reg) {
   case X:
     c->x = value;
@@ -59,6 +58,8 @@ static inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
   case Y:
     c->y = value;
     break;
+  case C:
+    c->c = value;
   // TODO: some error condition
   case XL:
   case XH:
@@ -66,10 +67,13 @@ static inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
   case YH:
   case A:
   case B:
-  case C:
   default:
     break;
   }
 
-  return 1;
+  if (value == 0) {
+    c->sr_z = 1;
+  }
+
+  return 2;
 }
