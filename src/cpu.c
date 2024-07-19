@@ -31,12 +31,12 @@ inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
   case XL:
     c->xl = value;
     if (hbo)
-      c->xh = 0xFF;
+      c->xh = 0;
     break;
   case YL:
     c->yl = value;
     if (hbo)
-      c->yh = 0xFF;
+      c->yh = 0;
     break;
   // TODO: some error condition
   case X:
