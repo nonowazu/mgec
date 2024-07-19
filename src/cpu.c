@@ -26,7 +26,7 @@ inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
   // TODO: flag changes
   // zero out the high byte when in native mode or
   // emulation mode with 8-bit indexers
-  bool hbo = (c->e || (c->sr_x || c->sr_m));
+  bool hbo = (c->e || c->sr_x);
   switch (reg) {
   case XL:
     c->xl = value;
@@ -38,12 +38,13 @@ inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
     if (hbo)
       c->yh = 0;
     break;
+  case A:
+    c->a = value;
   // TODO: some error condition
   case X:
   case XH:
   case Y:
   case YH:
-  case A:
   case B:
   case C:
   default:
@@ -54,6 +55,10 @@ inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
     c->sr_z = 1;
   } else {
     c->sr_z = 0;
+  }
+
+  if (value & 0x80) {
+    c->sr_n = 1;
   }
 
   return 1;
@@ -85,6 +90,10 @@ inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
     c->sr_z = 1;
   } else {
     c->sr_z = 0;
+  }
+
+  if (value & 0x8000) {
+    c->sr_n = 1;
   }
 
   return 2;
