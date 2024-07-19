@@ -59,6 +59,8 @@ inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
 
   if (value & 0x80) {
     c->sr_n = 1;
+  } else {
+    c->sr_n = 0;
   }
 
   return 1;
@@ -94,6 +96,8 @@ inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
 
   if (value & 0x8000) {
     c->sr_n = 1;
+  } else {
+    c->sr_n = 0;
   }
 
   return 2;

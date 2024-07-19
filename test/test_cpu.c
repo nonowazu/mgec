@@ -30,13 +30,30 @@ void test_CPU_should_init() {
 
 void test_CPU_load8() {
   cpu* c = mgec_new_cpu();
+  // 0b11110010
+  // negative: true
+  // zero: false
   u8 value = 242;
   cycles cyc = load(c, XL, value);
   TEST_ASSERT_EQUAL_INT8(242, c->xl);
   TEST_ASSERT_EQUAL_size_t(1, cyc);
-  // Maybe?
   TEST_ASSERT_EQUAL_INT8(0x00, c->xh);
-  TEST_ASSERT_EQUAL(0, c->sr_z);
+  // Checking for zero
+  TEST_ASSERT_FALSE(c->sr_z);
+  // Checking for negative
+  TEST_ASSERT_TRUE(c->sr_n);
+  // 0b00000000
+  // negative: false
+  // zero: true
+  value = 0;
+  cyc = load(c, YL, value);
+  TEST_ASSERT_EQUAL_INT8(242, c->xl);
+  TEST_ASSERT_EQUAL_size_t(1, cyc);
+  TEST_ASSERT_EQUAL_INT8(0x00, c->xh);
+  // Checking for zero
+  TEST_ASSERT_TRUE(c->sr_z);
+  // Checking for negative
+  TEST_ASSERT_FALSE(c->sr_n);
 }
 
 int main() {
