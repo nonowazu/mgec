@@ -1,10 +1,11 @@
 #include "cpu.h"
+#include "types.h"
 #include "unity.h"
 #include "unity_internals.h"
 #include <stdlib.h>
 
-void setUp(void) {};
-void tearDown(void) {};
+void setUp(void){};
+void tearDown(void){};
 
 void test_CPU_should_init() {
   cpu* c = mgec_new_cpu();
@@ -27,10 +28,43 @@ void test_CPU_should_init() {
   free(c);
 }
 
+void test_CPU_load8() {
+  cpu* c = mgec_new_cpu();
+  // 0b11110010
+  // negative: true
+  // zero: false
+  u8 value = 242;
+  cycles cyc = load(c, XL, value);
+  TEST_ASSERT_EQUAL_INT8(242, c->xl);
+  TEST_ASSERT_EQUAL_size_t(1, cyc);
+  TEST_ASSERT_EQUAL_INT8(0x00, c->xh);
+  // Checking for zero
+  TEST_ASSERT_FALSE(c->sr_z);
+  // Checking for negative
+  TEST_ASSERT_TRUE(c->sr_n);
+  // 0b00000000
+  // negative: false
+  // zero: true
+  value = 0;
+  cyc = load(c, YL, value);
+  TEST_ASSERT_EQUAL_INT8(0, c->yl);
+  TEST_ASSERT_EQUAL_size_t(1, cyc);
+  TEST_ASSERT_EQUAL_INT8(0x00, c->yh);
+  // Checking for zero
+  TEST_ASSERT_TRUE(c->sr_z);
+  // Checking for negative
+  TEST_ASSERT_FALSE(c->sr_n);
+
+  // let's also recheck the xl register for overwrites
+  TEST_ASSERT_EQUAL_INT8(242, c->xl);
+  TEST_ASSERT_EQUAL_INT8(0x00, c->xh);
+}
+
 int main() {
   UNITY_BEGIN();
 
   RUN_TEST(test_CPU_should_init);
+  RUN_TEST(test_CPU_load8);
 
   return UNITY_END();
 }

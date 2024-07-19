@@ -12,6 +12,8 @@
 #define MGEC_CPU_STATUS_ZERO 0b00000010
 #define MGEC_CPU_STATUS_CARRY 0b00000001
 
+typedef enum _cpu_register { XL, XH, X, YL, YH, Y, A, B, C } cpu_register_t;
+
 // The 65C816 CPU
 typedef struct _cpu {
   union {
@@ -100,5 +102,9 @@ typedef struct _cpu {
 } cpu;
 
 cpu* mgec_new_cpu();
+
+cycles load8(cpu*, cpu_register_t, u8);
+cycles load16(cpu*, cpu_register_t, u16);
+#define load(C, R, V) _Generic((V), u8: load8, u16: load16)(C, R, V)
 
 #endif
