@@ -2,8 +2,39 @@
 
 ## LOAD
 
-Loads an operand into a register
+**Syntax**: `LOAD $R,$V`
 
+Loads operand `$V` into a register `$R`.
+
+**Related opcodes**
+
+| Hex (Name) | Example     | Notes |
+| :--------  | :---------- | :---- |
+| $A0 (LDY)  | `LOAD Y,$V` |       |
+| $A1 (LDA)  | `LOAD A,$V` |       |
+| $A2 (LDX)  | `LOAD X,$V` |       |
+| $A3 (LDA)  | `LOAD A,$V` |       |
+| $A4 (LDY)  | `LOAD Y,$V` |       |
+| $A5 (LDA)  | `LOAD A,$V` |       |
+| $A6 (LDX)  | `LOAD X,$V` |       |
+| $A7 (LDA)  | `LOAD A,$V` |       |
+| $A9 (LDA)  | `LOAD A,$V` |       |
+| $AC (LDY)  | `LOAD Y,$V` |       |
+| $AD (LDA)  | `LOAD A,$V` |       |
+| $AE (LDX)  | `LOAD X,$V` |       |
+| $AF (LDA)  | `LOAD A,$V` |       |
+| $B1 (LDA)  | `LOAD A,$V` |       |
+| $B2 (LDA)  | `LOAD A,$V` |       |
+| $B3 (LDA)  | `LOAD A,$V` |       |
+| $B4 (LDY)  | `LOAD Y,$V` |       |
+| $B5 (LDA)  | `LOAD A,$V` |       |
+| $B6 (LDX)  | `LOAD X,$V` |       |
+| $B7 (LDA)  | `LOAD A,$V` |       |
+| $B9 (LDA)  | `LOAD A,$V` |       |
+| $BC (LDY)  | `LOAD Y,$V` |       |
+| $BD (LDA)  | `LOAD A,$V` |       |
+| $BE (LDX)  | `LOAD X,$V` |       |
+| $BF (LDA)  | `LOAD A,$V` |       |
 
 # Opcodes
 
