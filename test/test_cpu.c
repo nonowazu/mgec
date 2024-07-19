@@ -47,7 +47,7 @@ void test_CPU_load8() {
   // zero: true
   value = 0;
   cyc = load(c, YL, value);
-  TEST_ASSERT_EQUAL_INT8(242, c->yl);
+  TEST_ASSERT_EQUAL_INT8(0, c->yl);
   TEST_ASSERT_EQUAL_size_t(1, cyc);
   TEST_ASSERT_EQUAL_INT8(0x00, c->yh);
   // Checking for zero
