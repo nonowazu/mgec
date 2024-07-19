@@ -103,8 +103,8 @@ typedef struct _cpu {
 
 cpu* mgec_new_cpu();
 
-inline cycles load8(cpu*, cpu_register_t, u8);
-inline cycles load16(cpu*, cpu_register_t, u16);
+cycles load8(cpu*, cpu_register_t, u8);
+cycles load16(cpu*, cpu_register_t, u16);
 #define load(C, R, V) _Generic((V), u8: load8, u16: load16)(C, R, V)
 
 #endif

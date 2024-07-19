@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdlib.h>
 
 #include "cpu.h"
@@ -21,14 +22,21 @@ cpu* mgec_new_cpu() {
   return c;
 }
 
-extern inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
+inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
   // TODO: flag changes
+  // zero out the high byte when in native mode or
+  // emulation mode with 8-bit indexers
+  bool hbo = (c->e || (c->sr_x || c->sr_m));
   switch (reg) {
   case XL:
     c->xl = value;
+    if (hbo)
+      c->xh = 0xFF;
     break;
   case YL:
     c->yl = value;
+    if (hbo)
+      c->yh = 0xFF;
     break;
   // TODO: some error condition
   case X:
@@ -44,12 +52,14 @@ extern inline cycles load8(cpu* c, cpu_register_t reg, u8 value) {
 
   if (value == 0) {
     c->sr_z = 1;
+  } else {
+    c->sr_z = 0;
   }
 
   return 1;
 }
 
-extern inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
+inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
   // TODO: flag changes
   switch (reg) {
   case X:
@@ -73,6 +83,8 @@ extern inline cycles load16(cpu* c, cpu_register_t reg, u16 value) {
 
   if (value == 0) {
     c->sr_z = 1;
+  } else {
+    c->sr_z = 0;
   }
 
   return 2;
