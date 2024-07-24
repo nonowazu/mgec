@@ -40,7 +40,7 @@ Loads operand `$V` into a register `$R`.
 
 **Syntax**: `TRANS $R1,$R2`
 
-Transposes the values between $R1 and $R2, where one register is A
+Transfer the contents of `$R1` to `$R2`, overwriting the contents of $R2 in the process
 
 **Related Opcodes**
 
