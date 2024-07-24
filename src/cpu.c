@@ -110,6 +110,12 @@ inline cycles load8(cpu* c, cpu_register8_t reg, u8 value) {
     case YH:
       setReg8(c, YH, 0);
       break;
+    // cases we don't care about
+    case XH:
+    case YL:
+    case A:
+    default:
+      break;
     }
   }
 
@@ -153,6 +159,18 @@ inline cycles trans16(cpu* c, cpu_register16_t src, cpu_register16_t dest) {
   u16 value = fetchReg16(c, src);
   setReg16(c, dest, value);
 
+  if (value == 0) {
+    c->sr_z = 1;
+  } else {
+    c->sr_z = 0;
+  }
+
+  if (value & MGEC_16_NEGATIVE) {
+    c->sr_n = 1;
+  } else {
+    c->sr_n = 0;
+  }
+
   return 2;
 }
 
@@ -162,6 +180,18 @@ inline cycles trans8(cpu* c, cpu_register8_t src, cpu_register8_t dest) {
 
   u8 value = fetchReg8(c, src);
   setReg8(c, dest, value);
+
+  if (value == 0) {
+    c->sr_z = 1;
+  } else {
+    c->sr_z = 0;
+  }
+
+  if (value & MGEC_8_NEGATIVE) {
+    c->sr_n = 1;
+  } else {
+    c->sr_n = 0;
+  }
 
   return 2;
 }

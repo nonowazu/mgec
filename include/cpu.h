@@ -12,6 +12,9 @@
 #define MGEC_CPU_STATUS_ZERO 0b00000010
 #define MGEC_CPU_STATUS_CARRY 0b00000001
 
+#define MGEC_16_NEGATIVE 0x8000
+#define MGEC_8_NEGATIVE 0x80
+
 typedef enum _cpu_register16 { X = 1, Y, C } cpu_register16_t;
 typedef enum _cpu_register8 { XL = 9, XH, YL, YH, A, B } cpu_register8_t;
 
