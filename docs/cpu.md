@@ -36,6 +36,19 @@ Loads operand `$V` into a register `$R`.
 | $BE (LDX)  | `LOAD X,$V` |       |
 | $BF (LDA)  | `LOAD A,$V` |       |
 
+## TRANS
+
+**Syntax**: `TRANS $R1,$R2`
+
+Transposes the values between $R1 and $R2, where one register is A
+
+**Related Opcodes**
+
+| Hex (Name) | Example     | Notes |
+| :--------- | :---------- | :---- |
+|            |             |       |
+
+
 # Opcodes
 
 |         |    **-0**    |    **-1**    |    **-2**    |    **-3**    |    **-4**    |    **-5**    |    **-6**    |    **-7**    | **-8** |    **-9**    | **-A** | **-B** |    **-C**    |    **-D**    |    **-E**    |    **-F**    |

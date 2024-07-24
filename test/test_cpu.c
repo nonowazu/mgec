@@ -60,6 +60,8 @@ void test_CPU_load8() {
   TEST_ASSERT_EQUAL_INT8(0x00, c->xh);
 }
 
+void test_CPU_trans() {}
+
 int main() {
   UNITY_BEGIN();
 
