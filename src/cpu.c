@@ -99,12 +99,19 @@ inline void setReg16(cpu* c, cpu_register16_t reg, u16 value) {
 }
 
 inline cycles load8(cpu* c, cpu_register8_t reg, u8 value) {
-  setReg(c, reg, value);
+  setReg8(c, reg, value);
   // zero out the high byte when in native mode or
   // emulation mode with 8-bit indexers
-  // TODO: change generic to target on enum type instead of value type
-  if ((c->e || c->sr_x) && (reg == XL || reg == YL))
-    setReg(c, reg + 1, (u8)0);
+  if ((c->e || c->sr_x) && (reg == XL || reg == YL)) {
+    switch (reg) {
+    case XL:
+      setReg8(c, XH, 0);
+      break;
+    case YH:
+      setReg8(c, YH, 0);
+      break;
+    }
+  }
 
   if (value == 0) {
     c->sr_z = 1;
@@ -122,7 +129,7 @@ inline cycles load8(cpu* c, cpu_register8_t reg, u8 value) {
 }
 
 inline cycles load16(cpu* c, cpu_register16_t reg, u16 value) {
-  setReg(c, reg, value);
+  setReg16(c, reg, value);
 
   if (value == 0) {
     c->sr_z = 1;
@@ -139,26 +146,22 @@ inline cycles load16(cpu* c, cpu_register16_t reg, u16 value) {
   return 2;
 }
 
-inline cycles trans16(cpu* c, cpu_register16_t reg1, cpu_register16_t reg2) {
-  if (reg1 == reg2)
+inline cycles trans16(cpu* c, cpu_register16_t src, cpu_register16_t dest) {
+  if (src == dest)
     return 0;
 
-  u16 v1 = fetchReg(c, reg1);
-  u16 v2 = fetchReg(c, reg2);
-  setReg(c, reg1, v2);
-  setReg(c, reg2, v1);
+  u16 value = fetchReg16(c, src);
+  setReg16(c, dest, value);
 
   return 2;
 }
 
-inline cycles trans8(cpu* c, cpu_register8_t reg1, cpu_register8_t reg2) {
-  if (reg1 == reg2)
+inline cycles trans8(cpu* c, cpu_register8_t src, cpu_register8_t dest) {
+  if (src == dest)
     return 0;
 
-  u8 v1 = fetchReg(c, reg1);
-  u8 v2 = fetchReg(c, reg2);
-  setReg(c, reg1, v2);
-  setReg(c, reg2, v1);
+  u8 value = fetchReg8(c, src);
+  setReg8(c, dest, value);
 
   return 2;
 }

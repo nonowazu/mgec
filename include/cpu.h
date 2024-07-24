@@ -110,16 +110,11 @@ cycles load16(cpu*, cpu_register16_t, u16);
 
 u8 fetchReg8(cpu*, cpu_register8_t);
 u16 fetchReg16(cpu*, cpu_register16_t);
-#define fetchReg(C, R)                                                         \
-  _Generic((R), cpu_register8_t: fetchReg8, cpu_register16_t: fetchReg16)(C, R)
 
 void setReg8(cpu*, cpu_register8_t, u8);
 void setReg16(cpu*, cpu_register16_t, u16);
-#define setReg(C, R, V) _Generic((V), u8: setReg8, u16: setReg16)(C, R, V)
 
 cycles trans8(cpu*, cpu_register8_t, cpu_register8_t);
 cycles trans16(cpu*, cpu_register16_t, cpu_register16_t);
-#define trans(C, R1, R2)                                                       \
-  _Generic((R1), cpu_register8_t: trans8, cpu_register16_t: trans16);
 
 #endif
