@@ -125,7 +125,7 @@ inline cycles load8(cpu* c, cpu_register8_t reg, u8 value) {
     c->sr_z = 0;
   }
 
-  if (value & 0x80) {
+  if (value & MGEC_8_NEGATIVE) {
     c->sr_n = 1;
   } else {
     c->sr_n = 0;
@@ -143,7 +143,7 @@ inline cycles load16(cpu* c, cpu_register16_t reg, u16 value) {
     c->sr_z = 0;
   }
 
-  if (value & 0x8000) {
+  if (value & MGEC_16_NEGATIVE) {
     c->sr_n = 1;
   } else {
     c->sr_n = 0;
