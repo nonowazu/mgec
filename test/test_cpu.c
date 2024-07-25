@@ -58,6 +58,17 @@ void test_CPU_load8() {
   // let's also recheck the xl register for overwrites
   TEST_ASSERT_EQUAL_INT8(242, c->xl);
   TEST_ASSERT_EQUAL_INT8(0x00, c->xh);
+
+  free(c);
+}
+
+void test_CPU_trans() {
+  cpu* c = mgec_new_cpu();
+  u8 value = 4;
+  load(c, A, value);
+  trans8(c, A, XL);
+
+  TEST_ASSERT_EQUAL_INT8(4, c->xl);
 }
 
 int main() {
@@ -65,6 +76,7 @@ int main() {
 
   RUN_TEST(test_CPU_should_init);
   RUN_TEST(test_CPU_load8);
+  RUN_TEST(test_CPU_trans);
 
   return UNITY_END();
 }
