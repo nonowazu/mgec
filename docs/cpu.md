@@ -8,49 +8,49 @@ Loads operand `$V` into a register `$R`.
 
 **Related opcodes**
 
-| Hex (Name) | Example     | Notes |
-| :--------  | :---------- | :---- |
-| $A0 (LDY)  | `LOAD Y,$V` |       |
-| $A1 (LDA)  | `LOAD A,$V` |       |
-| $A2 (LDX)  | `LOAD X,$V` |       |
-| $A3 (LDA)  | `LOAD A,$V` |       |
-| $A4 (LDY)  | `LOAD Y,$V` |       |
-| $A5 (LDA)  | `LOAD A,$V` |       |
-| $A6 (LDX)  | `LOAD X,$V` |       |
-| $A7 (LDA)  | `LOAD A,$V` |       |
-| $A9 (LDA)  | `LOAD A,$V` |       |
-| $AC (LDY)  | `LOAD Y,$V` |       |
-| $AD (LDA)  | `LOAD A,$V` |       |
-| $AE (LDX)  | `LOAD X,$V` |       |
-| $AF (LDA)  | `LOAD A,$V` |       |
-| $B1 (LDA)  | `LOAD A,$V` |       |
-| $B2 (LDA)  | `LOAD A,$V` |       |
-| $B3 (LDA)  | `LOAD A,$V` |       |
-| $B4 (LDY)  | `LOAD Y,$V` |       |
-| $B5 (LDA)  | `LOAD A,$V` |       |
-| $B6 (LDX)  | `LOAD X,$V` |       |
-| $B7 (LDA)  | `LOAD A,$V` |       |
-| $B9 (LDA)  | `LOAD A,$V` |       |
-| $BC (LDY)  | `LOAD Y,$V` |       |
-| $BD (LDA)  | `LOAD A,$V` |       |
-| $BE (LDX)  | `LOAD X,$V` |       |
-| $BF (LDA)  | `LOAD A,$V` |       |
+| Hex (Name) | Example     | Addressing Mode                 | Notes |
+| :--------  | :---------- | :------------------------------ | :---- |
+| $A0 (LDY)  | `LOAD Y,$V` | Immediate                       |       |
+| $A1 (LDA)  | `LOAD A,$V` | Direct Indexed Indirect         |       |
+| $A2 (LDX)  | `LOAD X,$V` | Immediate                       |       |
+| $A3 (LDA)  | `LOAD A,$V` | Stack Relative                  |       |
+| $A4 (LDY)  | `LOAD Y,$V` | Direct                          |       |
+| $A5 (LDA)  | `LOAD A,$V` | Direct                          |       |
+| $A6 (LDX)  | `LOAD X,$V` | Direct                          |       |
+| $A7 (LDA)  | `LOAD A,$V` | Direct Indirect Long            |       |
+| $A9 (LDA)  | `LOAD A,$V` | Immediate                       |       |
+| $AC (LDY)  | `LOAD Y,$V` | Absolute                        |       |
+| $AD (LDA)  | `LOAD A,$V` | Absolute                        |       |
+| $AE (LDX)  | `LOAD X,$V` | Absolute                        |       |
+| $AF (LDA)  | `LOAD A,$V` | Absolute Long                   |       |
+| $B1 (LDA)  | `LOAD A,$V` | Direct Indirect Indexed         |       |
+| $B2 (LDA)  | `LOAD A,$V` | Direct Indirect                 |       |
+| $B3 (LDA)  | `LOAD A,$V` | Stack Relative Indirect Indexed |       |
+| $B4 (LDY)  | `LOAD Y,$V` | Direct Indexed with X           |       |
+| $B5 (LDA)  | `LOAD A,$V` | Direct Indexed with X           |       |
+| $B6 (LDX)  | `LOAD X,$V` | Direct Indexed with Y           |       |
+| $B7 (LDA)  | `LOAD A,$V` | Direct Indirect Long Indexed    |       |
+| $B9 (LDA)  | `LOAD A,$V` | Absolute Indexed with Y         |       |
+| $BC (LDY)  | `LOAD Y,$V` | Absolute Indexed with X         |       |
+| $BD (LDA)  | `LOAD A,$V` | Absolute Indexed with X         |       |
+| $BE (LDX)  | `LOAD X,$V` | Absolute Indexed with Y         |       |
+| $BF (LDA)  | `LOAD A,$V` | Absolute Long Indexed with X    |       |
 
 ## TRANS
 
 **Syntax**: `TRANS $R1,$R2`
 
-Transfer the contents of `$R1` to `$R2`, overwriting the contents of $R2 in the process
+Transfer the contents of `$R1` to `$R2`, overwriting the contents of $R2 in the process.
 
 **Related Opcodes**
 
-| Hex (Name) | Example     | Notes |
-| :--------- | :---------- | :---- |
-| $8A (TXA)  | `TRANS X,A` |       |
-| $98 (TYA)  | `TRANS Y,A` |       |
-| $9B (TXY)  | `TRANS X,Y` |       |
-| $AA (TAX)  | `TRANS A,X` |       |
-| $BB (TYX)  | `TRANS Y,X` |       |
+| Hex (Name) | Example     | Addressing Mode | Notes |
+| :--------- | :---------- | :-------------- | :---- |
+| $8A (TXA)  | `TRANS X,A` | Implied         |       |
+| $98 (TYA)  | `TRANS Y,A` | Implied         |       |
+| $9B (TXY)  | `TRANS X,Y` | Implied         |       |
+| $AA (TAX)  | `TRANS A,X` | Implied         |       |
+| $BB (TYX)  | `TRANS Y,X` | Implied         |       |
 
 
 # Opcodes
